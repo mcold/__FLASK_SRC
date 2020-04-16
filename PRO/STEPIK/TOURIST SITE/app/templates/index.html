@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- HERO -->
+<section class="jumbotron text-center mt-4">
+  <h1 class="display-4">Всякие туры</h1>
+  <p class="lead">{{ subtitle }}</p>
+  <p class="mt-5 w-50 mx-auto">{{ description }}</p>
+</section>
+<!-- CARDS -->
+<div class="row mt-5">
+  {% for i in tours %}
+    {% if loop.index >= 7 %}{% break %}{% endif %}
+      <div class="col-4">
+        <div class="card mb-4">
+          <img src="{{ tours[i].picture }}" class="card-img-top img-fluid" alt="">
+          <div class="card-body">
+            <h2 class="h5 card-title">{{ tours[i].title }}</h2>
+            <p class="card-text">{{ tours[i].description }}</p>
+            <a href="/tour/{{ i }}" class="btn btn-sm btn-primary">Подробнее</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+{% endblock %}

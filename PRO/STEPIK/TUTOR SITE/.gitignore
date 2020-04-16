@@ -1,0 +1,8 @@
+*test*
+*__pycache__*
+.vscode
+*.pyc
+booking.json
+request.json
+TODO
+*.db

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="display-5 mt-4">{{ departures.departure }}</h1>
+{% set l_dep = l_tours | selectattr('departure', '==', departure) | list %}
+{% set count_tours = l_tours | selectattr('departure', '==', departure) | list | count %}
+{% set min_price = l_dep | map(attribute='price') | min %}
+{% set max_price = l_dep | map(attribute='price') | max %}
+{% set min_nights = l_dep | map(attribute='nights') | min %}
+{% set max_nights = l_dep | map(attribute='nights') | max %}
+<p class="mb-4">Найдено {{ count_tours }} туров, от {{ min_price }} до {{ max_price }} и от {{ min_nights }} ночей до {{ max_nights }} ночей</p>
+<div class="row mt-5">
+  {% for tour in l_dep %}
+  <div class="col-4">
+    <div class="card mb-4">
+      <img src="{{ tour['picture'] }}" class="card-img-top img-fluid" alt="">
+      <div class="card-body">
+        <h2 class="h5 card-title">{{ tour['title'] }}</h2>
+        <p class="card-text">{{ tour['description'] }}</p>
+        <a href="/tour/{{ tour['id'] }}" class="btn btn-sm btn-primary">Подробнее</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock %}

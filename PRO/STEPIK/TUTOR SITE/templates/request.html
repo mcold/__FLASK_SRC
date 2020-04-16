@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+  <main class="container mt-5">
+    <div class="col-12 col-sm-10 col-lg-6 offset-lg-3 offset-sm-1">
+      <form action="/request" method="post" class="card mb-5">
+        <div class="card-body text-center pt-5">
+          <h1 class="h3 card-title mt-4 mb-2">Подбор преподавателя</h1>
+          <p class="px-5">Напишите, кто вам нужен и&nbsp;мы&nbsp;подберем специалиста</p>
+        </div>
+        <hr>
+        <div class="card-body mx-3">
+          <div class="row">
+            <div class="col">
+              {{ form_request.csrf_token() }}
+              <p>Какая цель занятий?</p>
+              {% for goal in form_request.goal %}
+                <div class="form-check ">
+                  {{ goal(type="radio", class="form-check-input")}}
+                  {{ goal.label}}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col">
+              <p>Сколько времени есть?</p>
+                {% for hours in form_request.hours %}
+                <div class="form-check ">
+                  {{ hours(type="radio", class="form-check-input")}}
+                  {{ hours.label}}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="card-body mx-3">
+          <label class="mb-1 mt-2">Вас зовут</label>
+          {{ form_request.client_name(class="form-control")}}
+          <label class="mb-1 mt-2">Ваш телефон</label>
+          {{ form_request.client_phone(class="form-control")}}
+          {{ form_request.submit(class='btn btn-primary btn-block mt-4') }}
+        </div>
+      </form>
+    </div>
+  </main>
+  {% endblock %}

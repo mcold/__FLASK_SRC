@@ -1,0 +1,13 @@
+<div class="card mb-4">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-3"><img src="{{ teach.picture }}" class="img-fluid" alt=""></div>
+        <div class="col-9">
+          <p class="float-right">Рейтинг: {{ teach.rating }} Ставка: {{ teach.price }} / час</p>
+          <h2 class="h4">{{ teach.name }}</h2>
+          <p>{{ teach.about }}</p>
+          <a href="/profile/{{ teach.teach_id }}" class="btn btn-outline-primary btn-sm mr-3 mb-2">Подробнее</a>
+        </div>
+      </div>
+    </div>
+  </div>

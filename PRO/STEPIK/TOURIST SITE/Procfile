@@ -1,0 +1,1 @@
+web: gunicorn journey_app:app
